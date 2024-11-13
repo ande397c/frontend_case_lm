@@ -1,0 +1,132 @@
+$font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+$primary-text-color: rgba(255, 255, 255, 0.87);
+$secondary-text-color: #ffffff75;
+$primary-background-color: #242424;
+$accent-color: #f1354f;
+$gap-medium: 1rem;
+$gap-large: 2rem;
+$border-radius-small: 5px;
+$border-radius-big: 10px;
+$story-width-desktop: 400px;
+$story-card-shadow: rgba(166, 161, 161, 0.1) 0px 10px 15px -3px, rgba(166, 161, 161, 0.05) 0px 4px 6px -2px;
+
+:root {
+ font-family: $font-family;
+ color: $primary-text-color;
+ background-color: $primary-background-color;
+ font-synthesis: none;
+ text-rendering: optimizeLegibility;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+ box-sizing: border-box;
+}
+
+main {
+ padding: 0.5rem;
+
+ h1,
+ .loading-text {
+  text-align: center;
+ }
+
+ .stories-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $gap-large;
+  margin-top: 2rem;
+  padding: 0;
+
+  .story {
+   width: 100%;
+   box-shadow: $story-card-shadow;
+   border-radius: $border-radius-big;
+   list-style-type: none;
+   transition: all 0.2s;
+
+   &:hover {
+    .story-title {
+     color: $accent-color;
+    }
+    transform: scale(1.03);
+   }
+
+   a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+
+    .story-date {
+     padding-top: 0.5rem;
+     color: $secondary-text-color;
+    }
+
+    .story-top-section {
+     position: relative;
+
+     .story-score {
+      position: absolute;
+      top: 9px;
+      left: 10px;
+      padding: 0.2rem 0.5rem;
+      border-radius: $border-radius-small;
+      background: $accent-color;
+     }
+
+     img {
+      max-width: 100%;
+      border-top-left-radius: $border-radius-big;
+      border-top-right-radius: $border-radius-big;
+     }
+
+     .story-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-inline: 0.5rem;
+      padding-bottom: 1rem;
+
+      .story-title {
+       min-height: 4rem;
+       font-size: 1.2rem;
+      }
+
+      p,
+      h3 {
+       font-size: 1rem;
+       margin-block: 0;
+      }
+
+      .author-info {
+       color: $secondary-text-color;
+       text-align: right;
+       text-transform: uppercase;
+       font-size: 0.8rem;
+       font-weight: 600;
+      }
+
+      .author-karma-score {
+       color: $accent-color;
+      }
+     }
+    }
+   }
+  }
+
+  @media only screen and (min-width: 600px) {
+   .story {
+    width: $story-width-desktop;
+
+    .story-title {
+     height: 3.5rem;
+    }
+   }
+  }
+ }
+}
