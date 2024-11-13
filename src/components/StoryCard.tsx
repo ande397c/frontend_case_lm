@@ -12,7 +12,7 @@ export const StoryCard = ({ story }: StoryCardProps) => {
 
  return (
   <li className="story">
-   <a href={story.storyUrl}>
+   <a href={story.storyUrl} target="_blank">
     <div className="story-top-section">
      <div className="story-score">{story.storyScore}</div>
      <img src={IMG_URL} alt="awesome hacker story pic" />
