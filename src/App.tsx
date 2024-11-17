@@ -4,13 +4,15 @@ import { StoryCard } from "./components/StoryCard";
 import { TStory } from "./types";
 
 function App() {
- const [stories, setStories] = useState<TStory[]>([]);
+ const [stories, setStories] = useState<TStory[] | undefined>(undefined);
+ const [loading, setLoading] = useState(false);
 
  useEffect(() => {
   fetchData();
  }, []);
 
  const fetchData = async () => {
+  setLoading(true);
   const storyIds = await getRandomStoryIds(10);
   if (!storyIds) return;
 
@@ -33,20 +35,15 @@ function App() {
   );
 
   setStories(storiesData.sort((a, b) => a.storyScore - b.storyScore));
+  setLoading(false);
  };
 
  return (
   <main>
-   <h1>Awesome Hacker Stories</h1>
-   {stories.length > 0 ? (
-    <ul className="stories-container">
-     {stories.map((story) => (
-      <StoryCard key={story.storyId} story={story} />
-     ))}
-    </ul>
-   ) : (
-    <p className="loading-text">Loading stories...</p>
-   )}
+   <h1 className="heading">Awesome Hacker Stories</h1>
+   <ul className="stories-container">{loading ? 
+    <p className="loading-text">Loading stories...</p> : 
+    stories?.map((story) => <StoryCard key={story.storyId} story={story} />)}</ul>
   </main>
  );
 }

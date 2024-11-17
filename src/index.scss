@@ -3,10 +3,8 @@ $primary-text-color: rgba(255, 255, 255, 0.87);
 $secondary-text-color: #ffffff75;
 $primary-background-color: #242424;
 $accent-color: #f1354f;
-$gap-medium: 1rem;
-$gap-large: 2rem;
-$border-radius-small: 5px;
-$border-radius-big: 10px;
+$border-radius-sm: 5px;
+$border-radius-lg: 10px;
 $story-width-desktop: 400px;
 $story-card-shadow: rgba(166, 161, 161, 0.1) 0px 10px 15px -3px, rgba(166, 161, 161, 0.05) 0px 4px 6px -2px;
 
@@ -29,7 +27,7 @@ $story-card-shadow: rgba(166, 161, 161, 0.1) 0px 10px 15px -3px, rgba(166, 161, 
 main {
  padding: 0.5rem;
 
- h1,
+ .heading,
  .loading-text {
   text-align: center;
  }
@@ -38,14 +36,14 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: $gap-large;
+  gap: 2rem;
   margin-top: 2rem;
   padding: 0;
 
   .story {
    width: 100%;
    box-shadow: $story-card-shadow;
-   border-radius: $border-radius-big;
+   border-radius: $border-radius-lg;
    list-style-type: none;
    transition: all 0.2s;
 
@@ -75,14 +73,14 @@ main {
       top: 9px;
       left: 10px;
       padding: 0.2rem 0.5rem;
-      border-radius: $border-radius-small;
+      border-radius: $border-radius-sm;
       background: $accent-color;
      }
 
      img {
       max-width: 100%;
-      border-top-left-radius: $border-radius-big;
-      border-top-right-radius: $border-radius-big;
+      border-top-left-radius: $border-radius-lg;
+      border-top-right-radius: $border-radius-lg;
      }
 
      .story-body {
