@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
+import { StoriesList } from "./components/StoriesList";
 import { getRandomStoryIds, getStoryData, getAuthorData } from "./services";
-import { StoryCard } from "./components/StoryCard";
 import { TStory } from "./types";
 
 function App() {
  const [stories, setStories] = useState<TStory[] | undefined>(undefined);
- const [loading, setLoading] = useState(false);
+ const [isLoading, setIsLoading] = useState(false);
 
  useEffect(() => {
   fetchData();
  }, []);
 
  const fetchData = async () => {
-  setLoading(true);
+  setIsLoading(true);
   const storyIds = await getRandomStoryIds(10);
   if (!storyIds) return;
 
@@ -35,15 +35,14 @@ function App() {
   );
 
   setStories(storiesData.sort((a, b) => a.storyScore - b.storyScore));
-  setLoading(false);
+  setIsLoading(false);
  };
 
  return (
   <main>
    <h1 className="heading">Awesome Hacker Stories</h1>
-   <ul className="stories-container">{loading ? 
-    <p className="loading-text">Loading stories...</p> : 
-    stories?.map((story) => <StoryCard key={story.storyId} story={story} />)}</ul>
+   {isLoading && <p className="loading-text">Loading stories...</p>}
+   <StoriesList stories={stories} />
   </main>
  );
 }
